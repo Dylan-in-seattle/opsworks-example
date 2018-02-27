@@ -2,3 +2,4 @@
 .kitchen
 Berksfile.lock
 Gemfile.lock
+cookbooks/*
