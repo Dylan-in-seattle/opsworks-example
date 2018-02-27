@@ -1,3 +1,4 @@
 .chef
+.kitchen
 Berksfile.lock
 Gemfile.lock

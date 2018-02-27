@@ -1,0 +1,31 @@
+---
+driver:
+  name: vagrant
+  network:
+  - ["private_network", {ip: '192.168.56.40'}]
+
+platforms:
+- name: centos-7
+  driver_config:
+    box: bento/centos-7.4
+- name: amzn
+  driver_config:
+    box: realreadme/amazon2016.09
+- name: amzn2
+  driver_config:
+    box: stakahashi/amazonlinux2
+
+provisioner:
+  name: chef_solo
+
+verifier:
+  name: inspec
+
+suites:
+- name: default
+  run_list:
+  - recipe[chef-client]
+  - recipe[os-hardening]
+  - recipe[ssh-hardening]
+  - recipe[nginx]
+  - recipe[inspec-page]
