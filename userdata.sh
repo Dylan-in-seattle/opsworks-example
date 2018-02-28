@@ -16,7 +16,7 @@ CHEF_CLIENT_VERSION="13.6.4" # latest if empty
 # you can add more cookbooks in the run list, based on your needs
 # Compliance runs require recipe[audit] to be added to the runlist.
 
-RUN_LIST="recipe[chef-client]" # e.g. "recipe[chef-client],recipe[apache2],recipe[audit]"
+RUN_LIST="role[webserver]" # e.g. "recipe[chef-client],recipe[apache2],recipe[audit]"
 
 # ---------------------------
 set -e -o pipefail

@@ -18,7 +18,7 @@
  # Use this to apply sensible default settings for your chef-client config like logrotate and running as a service
  # You can add more cookbooks in the run list, based on your needs
  # Compliance runs require recipe[audit] to be added to the runlist.
- $env:CHEF_RUN_LIST="recipe[chef-client]" # E.g. "recipe[chef-client],recipe[apache2],recipe[audit]"
+ $env:CHEF_RUN_LIST="role[webserver]" # E.g. "recipe[chef-client],recipe[apache2],recipe[audit]"
 
  # Chef installation parameters
  $env:CHEF_FOLDER = "C:\chef"
