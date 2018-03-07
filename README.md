@@ -63,7 +63,7 @@ $ knife upload role roles/webserver.rb
 Created roles/webserver.json
 ```
 
-We've done all the require preparation and we are ready to start our first Amazon Linux instance. I've used the Amazon Linux 2017.09 with t2.micro. SSH and HTTPs are the only entries required in your security group configuration. When you reach the instance details section, please make sure thecorrect IAM instance profile is selected and the userdata contains your role `RUN_LIST="role[webserver]"`.
+We've done all the require preparation and we are ready to start our first Amazon Linux instance. I've used the Amazon Linux 2017.09 with t2.micro. SSH and HTTPs are the only entries required in your security group configuration. When you reach the instance details section, please make sure the correct IAM instance profile is selected and the userdata contains your role `RUN_LIST="role[webserver]"`.
 
 ![Start EC2 instance with userdata](docs/images/ec2-instance-setup.png)
 
@@ -220,7 +220,8 @@ The used cloudinit userdata requires access to the AWS api via the AWS Cli. Setu
     {
       "Action": [
         "opsworks-cm:AssociateNode",
-        "opsworks-cm:DescribeNodeAssociationStatus"
+        "opsworks-cm:DescribeNodeAssociationStatus",
+        "ec2:DescribeTags",
       ],
       "Effect": "Allow",
       "Resource": [
