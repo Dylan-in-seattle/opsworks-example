@@ -19,6 +19,7 @@ We need some pieces upfront:
 * A running [OpsWorks Chef Automate](https://aws.amazon.com/opsworks/chefautomate/) instance
 * [IAM roles and policies](https://docs.aws.amazon.com/opsworks/latest/userguide/opscm-unattend-assoc.html#opscm-create-instance-profile) are setup, see FAQ
 * [ChefDK](https://downloads.chef.io/chefdk) is installed on your workstation
+* [OpsWorks StarterKit](https://github.com/chris-rock/opsworks-example)
 
 Note: This kit does not include the `.chef` directory since it contains private credentials. The `userdata.sh` and `userdata.ps1` are not generated for your environment. You need to [adapt it](https://docs.aws.amazon.com/opsworks/latest/userguide/opscm-unattend-assoc.html#w2ab2b9c27c19) or replace it with the one from your starter kit.
 
@@ -157,7 +158,25 @@ run_list(
 
 We've prepared everything you need. To scale the detection and correction automatically, we are going to apply the role for more servers. In practice you would tie the application deployment with the hardening in one role, but we keep it for simplicity.
 
-tbd ...
+As the first step, we are creating a new auto scaling group with a new launch configuration:
+
+![Create a new AWS Auto Scaling group](docs/images/auto-1.png)
+![Use cloudinit to setup node configuration](docs/images/auto-3.png)
+
+Setup the correct security group for each instance:
+![Security group configuration](docs/images/auto-4.png)
+
+Add custom tags for your auto scaling group:
+![Attach tags to auto scaling](docs/images/auto-5.png)
+![Custom Profile reports to Chef Automate](docs/images/auto-6.png)
+
+Once everything is configured, AWS will launch new instances that spin up Chef to harden the system and verify the compliance state with InSpec.
+
+![Custom Profile reports to Chef Automate](docs/images/auto-7.png)
+
+By combining InSpec for detection with Chef for hardening, we are able to scale our secure infrastructure effortless.
+
+![Compliant System](docs/images/auto-8.png)
 
 ### Use custom profile
 
